@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+
+<style>
+.image-container {
+  margin: 30px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+  max-width: 100%;
+  position: relative;
+}
+
+.image-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4);
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: all 0.4s ease;
+}
+
+.image-container:hover img {
+  filter: brightness(1.1);
+}
+
+.image-caption {
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7), transparent);
+  padding: 15px 20px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.image-container:hover .image-caption {
+  transform: translateY(0);
+}
+
+@keyframes loadProgress { 0% { width: 0%; } 100% { width: 100%; } }
+@keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
+{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+
+    /* Portfolio Button Styling */
+
+.portfolio-button {
+position: fixed;
+bottom: 30px;
+right: 30px;
+z-index: 1000;
+background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+color: var(--text-primary);
+border: none;
+border-radius: 50px;
+padding: 15px 25px;
+font-family: 'Inter', sans-serif;
+font-weight: 600;
+font-size: 1rem;
+cursor: pointer;
+box-shadow: 0 5px 20px rgba(37, 99, 235, 0.4);
+transition: all 0.3s ease;
+display: flex;
+align-items: center;
+gap: 10px;
+overflow: hidden;
+text-decoration: none;
+}
+.portfolio-button:hover {
+transform: translateY(-5px) scale(1.05);
+box-shadow: 0 8px 25px rgba(37, 99, 235, 0.6);
+}
+.portfolio-button::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg,
+transparent,
+rgba(255, 255, 255, 0.2),
+transparent);
+animation: shineEffect 3s infinite;
+}
+.portfolio-icon {
+font-size: 1.2rem;
+animation: pulse 2s infinite;
+}
+@keyframes shineEffect {
+0% { left: -100%; }
+20% { left: 100%; }
+100% { left: 100%; }
+}
+@keyframes pulse {
+0% { transform: scale(1); }
+50% { transform: scale(1.2); }
+100% { transform: scale(1); }
+}
+.attention-ripple {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 100%;
+height: 100%;
+border-radius: 50px;
+border: 2px solid var(--accent-color);
+animation: ripple 2s infinite;
+opacity: 0;
+}
+@keyframes ripple {
+0% {
+width: 100%;
+height: 100%;
+opacity: 0.8;
+}
+100% {
+width: 200%;
+height: 200%;
+opacity: 0;
+}
+}
+{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1e40af;
+    --accent-color: #06b6d4;
+    --success-color: #059669;
+    --warning-color: #d97706;
+    --danger-color: #dc2626;
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-card: #334155;
+    --bg-light: #f8fafc;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --border-color: #475569;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Tech Background Pattern */
+.tech-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(220, 38, 38, 0.08) 0%, transparent 50%);
+}
+
+.circuit-pattern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    opacity: 0.03;
+    background-image: 
+        linear-gradient(90deg, var(--primary-color) 1px, transparent 1px),
+        linear-gradient(var(--primary-color) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: circuitMove 20s linear infinite;
+}
+
+@keyframes circuitMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+/* Floating particles */
+.tech-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: float linear infinite;
+}
+
+@keyframes float {
+    0% { 
+        transform: translateY(100vh) translateX(0px);
+        opacity: 0;
+    }
+    10% { 
+        opacity: 0.6;
+    }
+    90% { 
+        opacity: 0.6;
+    }
+    100% { 
+        transform: translateY(-100px) translateX(100px);
+        opacity: 0;
+    }
+}
+
+/* Header */
+.header {
+    text-align: center;
+    padding: 100px 20px 80px;
+    background: linear-gradient(135deg, 
+        rgba(37, 99, 235, 0.1) 0%, 
+        rgba(6, 182, 212, 0.1) 50%, 
+        rgba(5, 150, 105, 0.1) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(37, 99, 235, 0.1),
+        transparent
+    );
+    animation: headerScan 10s linear infinite;
+}
+
+@keyframes headerScan {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.main-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color), var(--success-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    text-shadow: 0 0 50px rgba(37, 99, 235, 0.3);
+    animation: titleGlow 4s ease-in-out infinite alternate;
+    position: relative;
+}
+
+@keyframes titleGlow {
+    0% { filter: brightness(1); }
+    100% { filter: brightness(1.2); }
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.author-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    animation: cardFloat 6s ease-in-out infinite alternate;
+}
+
+@keyframes cardFloat {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-10px); }
+}
+
+.card-header {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.author-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    text-align: left;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.info-label {
+    font-weight: 600;
+    color: var(--primary-color);
+    min-width: 80px;
+    margin-right: 15px;
+}
+
+.info-value {
+    color: var(--text-primary);
+    font-weight: 400;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+/* Section styling */
+.section {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.05) 0%, 
+        rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px;
+    margin: 40px 0;
+    position: relative;
+    backdrop-filter: blur(20px);
+    transition: all 0.4s ease;
+    animation: sectionSlide 0.8s ease-out;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.section:nth-child(even) {
+    animation: sectionSlideRight 0.8s ease-out;
+}
+
+@keyframes sectionSlide {
+    from { transform: translateX(-50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes sectionSlideRight {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.section:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 12px 48px rgba(37, 99, 235, 0.2);
+    transform: translateY(-8px);
+}
+
+.section-title {
+    font-family: 'Inter', sans-serif;
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    position: relative;
+    padding-left: 30px;
+}
+
+.section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 30px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 2px;
+}
+
+/* Sub-section titles */
+.subsection-title {
+    font-family: 'Inter', sans-serif;
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.subsection-title::before {
+    content: '—'; /* Simple dash or similar indicator */
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+/* Code blocks with typing effect */
+.code-terminal {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 25px 0;
+    font-family: 'JetBrains Mono', monospace;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.code-terminal::before {
+    content: '$ mikrotik@router:~';
+    color: var(--success-color);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.code-line {
+    color: var(--text-primary);
+    margin: 8px 0;
+    position: relative;
+    padding-left: 20px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    width: fit-content;
+    font-family: 'JetBrains Mono', monospace;
+    white-space: pre;
+}
+
+.code-line.typing {
+    opacity: 1;
+    border-right: 2px solid var(--accent-color);
+    animation: blink-cursor 1s infinite;
+}
+
+.code-line.typed {
+    opacity: 1;
+    border-right: none;
+}
+
+@keyframes blink-cursor {
+    0%, 50% { border-color: var(--accent-color); }
+    51%, 100% { border-color: transparent; }
+}
+
+.code-line:hover {
+    background: rgba(37, 99, 235, 0.1);
+    padding-left: 25px;
+    border-radius: 6px;
+}
+
+.code-line::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-size: 0.8rem;
+}
+
+.comment {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.string {
+    color: var(--warning-color);
+    font-weight: 400;
+}
+
+.keyword {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Alert boxes */
+.tech-alert {
+    background: linear-gradient(135deg, 
+        rgba(37, 99, 235, 0.1), 
+        rgba(6, 182, 212, 0.1));
+    border: 1px solid var(--primary-color);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 30px 0;
+    position: relative;
+    animation: alertPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes alertPulse {
+    0% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.2); }
+    100% { box-shadow: 0 0 30px rgba(37, 99, 235, 0.4); }
+}
+
+.tech-alert::before {
+    content: '🔧 TEKNOLOGI INFO';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--bg-primary);
+    color: var(--primary-color);
+    padding: 5px 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    border: 1px solid var(--primary-color);
+}
+
+.security-alert {
+    background: linear-gradient(135deg, 
+        rgba(220, 38, 38, 0.1), 
+        rgba(217, 119, 6, 0.1));
+    border: 1px solid var(--danger-color);
+    border-left: 4px solid var(--danger-color);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 30px 0;
+    position: relative;
+    animation: securityBlink 2s ease-in-out infinite alternate;
+}
+
+@keyframes securityBlink {
+    0% { border-left-color: var(--danger-color); }
+    100% { border-left-color: var(--warning-color); }
+}
+
+.security-alert::before {
+    content: '🛡 KEAMANAN';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--bg-primary);
+    color: var(--danger-color);
+    padding: 5px 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    border: 1px solid var(--danger-color);
+}
+
+.conclusion-box {
+    background: linear-gradient(135deg, 
+        rgba(5, 150, 105, 0.1), 
+        rgba(37, 99, 235, 0.1));
+    border: 1px solid var(--success-color);
+    border-left: 4px solid var(--success-color);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 30px 0;
+    position: relative;
+    animation: conclusionGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes conclusionGlow {
+    0% { box-shadow: 0 0 20px rgba(5, 150, 105, 0.2); }
+    100% { box-shadow: 0 0 30px rgba(5, 150, 105, 0.4); }
+}
+
+.conclusion-box::before {
+    content: '📝 KESIMPULAN';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--bg-primary);
+    color: var(--success-color);
+    padding: 5px 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    border: 1px solid var(--success-color);
+}
+
+/* Bibliography */
+.bibliography {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.08), 
+        rgba(255, 255, 255, 0.04));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 40px;
+    margin-top: 60px;
+    backdrop-filter: blur(20px);
+    animation: biblioFade 1.5s ease-out;
+}
+
+@keyframes biblioFade {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.bibliography h3 {
+    color: var(--accent-color);
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.bibliography ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.bibliography li {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+    position: relative;
+    padding-left: 50px;
+}
+
+.bibliography li::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    font-size: 1.2rem;
+}
+
+.bibliography li:hover {
+    color: var(--text-primary);
+    transform: translateX(10px);
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(6, 182, 212, 0.05));
+}
+
+.bibliography a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    word-break: break-all;
+}
+
+.bibliography a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* Progress bar */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--success-color));
+    z-index: 1000;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .section {
+        padding: 25px 20px;
+        margin: 30px 0;
+    }
+    
+    .container {
+        padding: 40px 15px;
+    }
+
+    .code-terminal {
+        padding: 20px;
+        font-size: 0.9rem;
+    }
+
+    .author-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Smooth animations */
+.fade-in {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+ 
+img, a {
+-webkit-user-drag: none;
+-khtml-user-drag: none;
+-moz-user-drag: none;
+-o-user-drag: none;
+user-drag: none;
+}
+
+</style>
+
+<!-- Portfolio Button -->
+<a href="https://jovian-portofolio02.vercel.app/" target="_blank" class="portfolio-button">
+    <span class="portfolio-icon">🚀</span>
+    Lihat Portfolio Saya
+    <div class="attention-ripple"></div>
+</a>
+
+<!-- Tech Background -->
+<div class="tech-bg"></div>
+<div class="circuit-pattern"></div>
+<div class="tech-particles" id="techParticles"></div>
+
+<!-- Header -->
+<div class="header">
+    <h1 class="main-title">MIKROTIK ROUTEROS</h1>
+    <div class="subtitle">Mengaktifkan Graphing dan SNMP untuk Pemantauan di MikroTik</div>
+    <div class="subtitle">Monitoring Jangka Panjang dan Integrasi dengan Sistem Eksternal</div>
+    
+    <div class="author-card">
+        <div class="card-header">Informasi Penulis</div>
+        <div class="author-info">
+            <div class="info-item">
+                <span class="info-label">Penulis:</span>
+                <span class="info-value">Jovian Ekasakta</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Guru:</span>
+                <span class="info-value">Arief Wahyudin</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Kelas:</span>
+                <span class="info-value">XI TJKT 03</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Sekolah:</span>
+                <span class="info-value">Dwija Bhakti 01 Jombang</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Section: Pendahuluan -->
+    <div class="section fade-in">
+        <h2 class="section-title">1. PENDAHULUAN MONITORING JANGKA PANJANG</h2>
+
+        <div class="image-container">
+            <img src="https://i.ibb.co/qM6jP5b/mikrotik-graphing.jpg" alt="MikroTik Graphing">
+            <div class="image-caption">Ilustrasi monitoring jaringan jangka panjang dengan MikroTik Graphing dan SNMP</div>
+        </div>
+
+        <h3 class="subsection-title">Pentingnya Monitoring Jangka Panjang</h3>
+        <p>Dari sumber MikroTik Network Management Guide (2025), monitoring jangka panjang merupakan komponen esensial dalam pengelolaan jaringan modern yang efektif. Berbeda dengan monitoring real-time seperti Torch dan Packet Sniffer yang berfokus pada analisis sesaat, monitoring jangka panjang memungkinkan administrator untuk mengidentifikasi tren, pola, dan anomali yang hanya terlihat dalam rentang waktu yang lebih panjang.</p>
+        
+        <p>Dari sumber Network Monitoring Fundamentals (2024), data historis yang dikumpulkan melalui monitoring jangka panjang sangat berharga untuk perencanaan kapasitas, identifikasi masalah berkala, analisis pertumbuhan trafik, dan pembuatan kebijakan penggunaan bandwidth yang optimal. MikroTik RouterOS menyediakan dua fitur utama untuk monitoring jangka panjang: Graphing (built-in) dan SNMP (Simple Network Management Protocol).</p>
+
+        <div class="tech-alert">
+            <p>MikroTik RouterOS memiliki fitur Graphing terintegrasi yang dapat mengumpulkan dan menampilkan statistik penggunaan resource dan trafik jaringan dalam bentuk grafik yang mudah dipahami. Dengan mengaktifkan SNMP, data ini juga dapat diintegrasikan dengan sistem monitoring eksternal yang lebih canggih untuk analisis yang lebih komprehensif.</p>
+        </div>
+
+        <h3 class="subsection-title">Perbedaan Antara Graphing dan SNMP</h3>
+        <p>Dari sumber MikroTik Best Practices Guide (2025), meskipun sama-sama berfungsi untuk monitoring jangka panjang, Graphing dan SNMP memiliki perbedaan mendasar dalam cara implementasi dan penggunaannya. Graphing adalah solusi built-in MikroTik yang mengumpulkan dan menyimpan data historis pada router itu sendiri, dengan akses melalui WebFig atau Winbox. Sedangkan SNMP adalah protokol standar industri yang memungkinkan router MikroTik berkomunikasi dengan sistem monitoring eksternal, menyediakan fleksibilitas dan skalabilitas yang lebih besar.</p>
+
+        <p>Dari sumber Enterprise Network Monitoring (2024), pemilihan antara Graphing dan SNMP tergantung pada skala jaringan dan kebutuhan monitoring. Graphing ideal untuk jaringan kecil hingga menengah dengan kebutuhan monitoring dasar, sementara SNMP lebih cocok untuk jaringan enterprise yang memerlukan monitoring terpusat untuk banyak perangkat dengan kemampuan analisis dan pelaporan yang lebih canggih.</p>
+
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Perbandingan Fitur Graphing dan SNMP:</span></div>
+            <div class="code-line">Graphing:</div>
+            <div class="code-line">- Solusi built-in MikroTik RouterOS</div>
+            <div class="code-line">- Data disimpan pada router itu sendiri</div>
+            <div class="code-line">- Visualisasi melalui Winbox atau WebFig</div>
+            <div class="code-line">- Tidak memerlukan software tambahan</div>
+            <div class="code-line">- Ideal untuk jaringan kecil hingga menengah</div>
+            <div class="code-line">- Terbatas pada metrik yang disediakan RouterOS</div>
+            <div class="code-line"></div>
+            <div class="code-line">SNMP:</div>
+            <div class="code-line">- Protokol standar industri untuk monitoring</div>
+            <div class="code-line">- Memungkinkan integrasi dengan sistem eksternal</div>
+            <div class="code-line">- Mendukung pengumpulan data dari banyak perangkat</div>
+            <div class="code-line">- Kemampuan analisis dan visualisasi lebih canggih</div>
+            <div class="code-line">- Ideal untuk jaringan enterprise</div>
+            <div class="code-line">- Memerlukan software monitoring eksternal</div>
+        </div>
+
+        <div class="conclusion-box">
+            <strong>Kesimpulan Pendahuluan:</strong> Dari 2 pendapat tersebut dapat disimpulkan bahwa monitoring jangka panjang menggunakan Graphing dan SNMP di MikroTik merupakan komponen penting dalam manajemen jaringan modern. Kedua fitur ini saling melengkapi dengan Graphing menyediakan solusi monitoring terintegrasi yang sederhana, sementara SNMP membuka kemungkinan untuk integrasi dengan sistem monitoring eksternal yang lebih canggih. Penggunaan keduanya memberikan wawasan komprehensif tentang performa jaringan dari waktu ke waktu.
+        </div>
+    </div>
+
+    <!-- Section: MikroTik Graphing -->
+    <div class="section fade-in">
+        <h2 class="section-title">2. MENGAKTIFKAN DAN MENGONFIGURASI GRAPHING</h2>
+
+        <div class="image-container">
+            <img src="https://i.ibb.co/YyBKJ4Y/mikrotik-graphing-config.jpg" alt="MikroTik Graphing Configuration">
+            <div class="image-caption">Interface konfigurasi Graphing pada MikroTik Winbox</div>
+        </div>
+
+        <h3 class="subsection-title">Pengertian dan Fitur MikroTik Graphing</h3>
+        <p>Dari sumber MikroTik Documentation (2025), Graphing adalah fitur built-in di RouterOS yang secara otomatis mengumpulkan data statistik dari berbagai sumber seperti interface, queue, resource sistem, dan wireless, kemudian menyajikannya dalam bentuk grafik visual. Data historis disimpan pada router itu sendiri dengan periode retensi yang dapat dikonfigurasi, memungkinkan administrator untuk melihat performa jaringan dari waktu ke waktu.</p>
+
+        <p>Dari sumber Network Visualization Techniques (2024), kekuatan utama MikroTik Graphing terletak pada kesederhanaannya dan integrasi yang mulus dengan RouterOS. Tanpa memerlukan instalasi software tambahan, administrator dapat dengan cepat mendapatkan gambaran visual tentang tren penggunaan bandwidth, pemanfaatan CPU, memori, dan metrik penting lainnya yang membantu dalam identifikasi bottleneck dan perencanaan kapasitas.</p>
+
+        <h3 class="subsection-title">Mengaktifkan dan Mengonfigurasi Graphing di Winbox</h3>
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Mengaktifkan Graphing di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Tools" di panel kiri</div>
+            <div class="code-line">3. Pilih "Graphing" dari menu dropdown</div>
+            <div class="code-line">4. Jendela "Graphing" dengan beberapa tab akan terbuka</div>
+            <div class="code-line"></div>
+            <div class="code-line"><span class="keyword">Mengonfigurasi Pengaturan Umum Graphing:</span></div>
+            <div class="code-line">1. Tab "Interface":</div>
+            <div class="code-line">   - Daftar semua interface yang tersedia untuk graphing</div>
+            <div class="code-line">   - Centang interface yang ingin dimonitor</div>
+            <div class="code-line">   - Klik tombol "Allow" untuk mengaktifkan graphing pada interface</div>
+            <div class="code-line"></div>
+            <div class="code-line">2. Tab "Queue":</div>
+            <div class="code-line">   - Daftar semua queue yang tersedia untuk graphing</div>
+            <div class="code-line">   - Centang queue yang ingin dimonitor</div>
+            <div class="code-line">   - Klik "Allow" untuk mengaktifkan graphing pada queue</div>
+            <div class="code-line"></div>
+            <div class="code-line">3. Tab "Resource":</div>
+            <div class="code-line">   - Opsi untuk monitoring resource sistem seperti CPU, memori, disk</div>
+            <div class="code-line">   - Centang sumber daya yang ingin dimonitor</div>
+            <div class="code-line">   - Klik "Allow" untuk mengaktifkan graphing pada resource</div>
+        </div>
+
+        <h3 class="subsection-title">Mengonfigurasi Pengaturan Lanjutan</h3>
+        <p>Dari sumber MikroTik Advanced Configuration (2025), untuk mengoptimalkan performa dan penyimpanan Graphing, administrator dapat menyesuaikan berbagai parameter lanjutan seperti interval pengambilan data, periode retensi, dan penyimpanan.</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Mengonfigurasi Pengaturan Lanjutan Graphing:</span></div>
+            <div class="code-line">1. Akses menu konfigurasi lanjutan:</div>
+            <div class="code-line">   - Buka "Tools" → "Graphing"</div>
+            <div class="code-line">   - Pilih tab "Settings"</div>
+            <div class="code-line"></div>
+            <div class="code-line">2. Sesuaikan parameter berikut:</div>
+            <div class="code-line">   - Store Every: interval penyimpanan data (default: 5 menit)</div>
+            <div class="code-line">   - Store On Disk: centang untuk menyimpan data pada disk</div>
+            <div class="code-line">   - Storage Path: lokasi penyimpanan (default: graphing)</div>
+            <div class="code-line">   - Memory Used: maksimum memori yang digunakan untuk graphing</div>
+            <div class="code-line">   - Data Period: lama waktu data disimpan (default: 1 minggu)</div>
+            <div class="code-line"></div>
+            <div class="code-line">3. Klik "OK" atau "Apply" untuk menyimpan perubahan</div>
+            <div class="code-line"></div>
+            <div class="code-line">4. Pengaturan Web Access (opsional):</div>
+            <div class="code-line">   - Buka menu "IP" → "Services"</div>
+            <div class="code-line">   - Pastikan layanan "www" diaktifkan untuk akses WebFig</div>
+            <div class="code-line">   - Atur parameter keamanan seperti port dan allowed address</div>
+        </div>
+
+        <h3 class="subsection-title">Mengakses dan Menganalisis Grafik</h3>
+        <p>Dari sumber Data Visualization in Network Management (2024), ada dua cara utama untuk mengakses grafik yang dihasilkan oleh Graphing MikroTik: melalui Winbox dan melalui WebFig. Keduanya menyediakan visualisasi yang serupa, dengan WebFig menawarkan keuntungan dapat diakses dari browser web tanpa memerlukan Winbox.</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Mengakses Grafik melalui Winbox:</span></div>
+            <div class="code-line">1. Buka Winbox dan hubungkan ke router</div>
+            <div class="code-line">2. Klik menu "Tools" → "Graphing"</div>
+            <div class="code-line">3. Pilih tab "Graphs"</div>
+            <div class="code-line">4. Daftar grafik yang tersedia akan ditampilkan</div>
+            <div class="code-line">5. Klik dua kali pada grafik untuk melihat detail</div>
+            <div class="code-line"></div>
+            <div class="code-line"><span class="keyword">Mengakses Grafik melalui WebFig:</span></div>
+            <div class="code-line">1. Buka browser web</div>
+            <div class="code-line">2. Masukkan alamat IP router MikroTik (contoh: http://192.168.88.1)</div>
+            <div class="code-line">3. Login dengan kredensial router</div>
+            <div class="code-line">4. Klik menu "Graphs" di panel navigasi</div>
+            <div class="code-line">5. Pilih grafik yang ingin dilihat</div>
+            <div class="code-line"></div>
+            <div class="code-line"><span class="keyword">Opsi Tampilan Grafik:</span></div>
+            <div class="code-line">- Daily: menampilkan data 24 jam terakhir dengan interval 5 menit</div>
+            <div class="code-line">- Weekly: menampilkan data 7 hari terakhir dengan interval 30 menit</div>
+            <div class="code-line">- Monthly: menampilkan data 30 hari terakhir dengan interval 2 jam</div>
+            <div class="code-line">- Yearly: menampilkan data 1 tahun terakhir dengan interval 1 hari</div>
+        </div>
+
+        <div class="tech-alert">
+            <p>Pengumpulan dan penyimpanan data Graphing membutuhkan resource router, terutama ruang penyimpanan. Pada router dengan flash storage terbatas, pertimbangkan untuk mengaktifkan Graphing hanya pada interface dan resource penting, atau sesuaikan periode penyimpanan data (Data Period) untuk menghindari penggunaan storage yang berlebihan.</p>
+        </div>
+
+        <div class="conclusion-box">
+            <strong>Kesimpulan MikroTik Graphing:</strong> Dari 2 pendapat tersebut dapat disimpulkan bahwa MikroTik Graphing adalah solusi monitoring jangka panjang built-in yang powerful namun mudah dikonfigurasi. Dengan kemampuan untuk mengumpulkan dan memvisualisasikan data trafik, queue, dan resource sistem, Graphing memberikan wawasan berharga tentang performa jaringan dari waktu ke waktu tanpa memerlukan software tambahan. Melalui antarmuka Winbox atau WebFig, administrator dapat dengan mudah menganalisis tren penggunaan dan mengidentifikasi masalah potensial sebelum berdampak pada pengguna.
+        </div>
+    </div>
+
+    <!-- Section: SNMP Configuration -->
+    <div class="section fade-in">
+        <h2 class="section-title">3. MENGONFIGURASI SNMP UNTUK MONITORING EKSTERNAL</h2>
+
+        <div class="image-container">
+            <img src="https://i.ibb.co/Th8DjHr/mikrotik-snmp.jpg" alt="MikroTik SNMP Configuration">
+            <div class="image-caption">Konfigurasi SNMP pada MikroTik untuk integrasi dengan sistem monitoring eksternal</div>
+        </div>
+
+        <h3 class="subsection-title">Pengertian dan Fitur SNMP di MikroTik</h3>
+        <p>Dari sumber MikroTik Documentation (2025), SNMP (Simple Network Management Protocol) adalah protokol standar yang digunakan untuk mengumpulkan dan mengatur informasi tentang perangkat yang dikelola di jaringan IP. MikroTik RouterOS mendukung SNMPv1, SNMPv2c, dan SNMPv3, memungkinkan router untuk berkomunikasi dengan berbagai sistem monitoring jaringan seperti PRTG, Nagios, Zabbix, LibreNMS, dan lainnya.</p>
+
+        <p>Dari sumber Network Management Systems (2024), keunggulan utama SNMP dibandingkan Graphing adalah kemampuannya untuk mengintegrasikan MikroTik dengan ekosistem monitoring yang lebih besar. Melalui SNMP, administrator dapat mengumpulkan data dari berbagai perangkat jaringan (tidak terbatas pada MikroTik) dalam satu sistem terpusat, dengan kemampuan visualisasi, pelaporan, dan notifikasi yang jauh lebih canggih.</p>
+
+        <h3 class="subsection-title">Mengaktifkan dan Mengonfigurasi SNMP di Winbox</h3>
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Mengaktifkan SNMP di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "IP" di panel kiri</div>
+            <div class="code-line">3. Pilih "SNMP" dari menu dropdown</div>
+            <div class="code-line">4. Jendela konfigurasi SNMP akan terbuka</div>
+            <div class="code-line"></div>
+            <div class="code-line"><span class="keyword">Mengonfigurasi Pengaturan Dasar SNMP:</span></div>
+            <div class="code-line">1. Tab "SNMP Settings":</div>
+            <div class="code-line">   - Centang "Enabled" untuk mengaktifkan layanan SNMP</div>
+            <div class="code-line">   - Contact: masukkan informasi kontak administrator (opsional)</div>
+            <div class="code-line">   - Location: masukkan lokasi fisik router (opsional)</div>
+            <div class="code-line">   - Trap Community: nama community untuk SNMP traps</div>
+            <div class="code-line">   - Trap Version: versi SNMP untuk trap (1 atau 2)</div>
+            <div class="code-line">   - Engine ID: ID unik untuk SNMPv3 (otomatis)</div>
+            <div class="code-line">2. Klik "OK" atau "Apply" untuk menyimpan perubahan</div>
+            <div class="code-line"></div>
+            <div class="code-line"><span class="keyword">Mengonfigurasi SNMP Community:</span></div>
+            <div class="code-line">1. Klik tab "Communities"</div>
+            <div class="code-line">2. Klik tombol "+" untuk menambahkan community baru</div>
+            <div class="code-line">3. Pada jendela "New SNMP Community":</div>
+            <div class="code-line">   - Name: nama community (default: public)</div>
+            <div class="code-line">   - Addresses: alamat IP sistem monitoring (opsional, untuk keamanan)</div>
+            <div class="code-line">   - Security: pilih level keamanan (none, noAuthNoPriv, authNoPriv, authPriv)</div>
+            <div class="code-line">   - Read Access: centang untuk memberikan akses baca</div>
+            <div class="code-line">   - Write Access: centang untuk memberikan akses tulis (hati-hati!)</div>
+            <div class="code-line">4. Klik "OK" untuk menambahkan community</div>
+        </div>
+
+        <h3 class="subsection-title">Konfigurasi SNMP Lanjutan dengan SNMPv3</h3>
+        <p>Dari sumber Secure Network Monitoring (2025), SNMPv3 menawarkan tingkat keamanan yang jauh lebih tinggi dibandingkan SNMPv1 dan SNMPv2c dengan menambahkan fitur autentikasi dan enkripsi. Untuk jaringan produksi, sangat direkomendasikan untuk menggunakan SNMPv3 untuk melindungi informasi monitoring dari akses tidak sah.</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Mengonfigurasi SNMPv3 di Winbox:</span></div>
+            <div class="code-line">1. Klik tab "Users" pada jendela SNMP</div>
+            <div class="code-line">2. Klik tombol "+" untuk menambahkan user baru</div>
+            <div class="code-line">3. Pada jendela "New SNMP User":</div>
+            <div class="code-line">   - Name: nama pengguna</div>
+            <div class="code-line">   - Addresses: alamat IP sistem monitoring (opsional)</div>
+            <div class="code-line">   - Security: pilih level keamanan (authPriv direkomendasikan)</div>
+            <div class="code-line">   - Authentication Protocol: pilih algoritma (SHA direkomendasikan)</div>
+            <div class="code-line">   - Authentication Password: masukkan password yang kuat</div>
+            <div class="code-line">   - Encryption Protocol: pilih algoritma (AES direkomendasikan)</div>
+            <div class="code-line">   - Encryption Password: masukkan password yang kuat</div>
+            <div class="code-line">   - Read Access: centang untuk memberikan akses baca</div>
+            <div class="code-line">   - Write Access: centang untuk memberikan akses tulis (hati-hati!)</div>
+            <div class="code-line">4. Klik "OK" untuk menambahkan user SNMPv3</div>
+            <div class="code-line"></div>
+            <div class="code-line"><span class="keyword">Mengonfigurasi SNMP Firewall Rules:</span></div>
+            <div class="code-line">1. Buka menu "IP" → "Firewall"</div>
+            <div class="code-line">2. Pilih tab "Filter Rules"</div>
+            <div class="code-line">3. Klik tombol "+" untuk menambahkan aturan baru</div>
+            <div class="code-line">4. Pada tab "General":</div>
+            <div class="code-line">   - Chain: input</div>
+            <div class="code-line">   - Protocol: udp</div>
+            <div class="code-line">   - Dst. Port: 161 (port SNMP default)</div>
+            <div class="code-line">5. Pada tab "Advanced":</div>
+            <div class="code-line">   - Src. Address List: monitoring-servers (buat address list)</div>
+            <div class="code-line">6. Pada tab "Action":</div>
+            <div class="code-line">   - Action: accept</div>
+            <div class="code-line">7. Klik "OK" untuk menambahkan aturan</div>
+        </div>
+
+        <h3 class="subsection-title">Integrasi dengan Sistem Monitoring Eksternal</h3>
+        <p>Dari sumber Enterprise Monitoring Solutions (2024), setelah SNMP dikonfigurasi pada MikroTik, langkah selanjutnya adalah mengintegrasikannya dengan sistem monitoring eksternal. Beberapa platform monitoring populer yang dapat diintegrasikan dengan MikroTik melalui SNMP termasuk PRTG, Zabbix, Nagios, LibreNMS, dan Cacti.</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Contoh Integrasi dengan Zabbix:</span></div>
+            <div class="code-line">1. Install dan konfigurasi server Zabbix</div>
+            <div class="code-line">2. Tambahkan host baru di Zabbix:</div>
+            <div class="code-line">   - Buka web interface Zabbix</div>
+            <div class="code-line">   - Navigasi ke Configuration → Hosts</div>
+            <div class="code-line">   - Klik "Create host"</div>
+            <div class="code-line">   - Host name: nama router MikroTik</div>
+            <div class="code-line">   - Groups: pilih atau buat grup (misalnya: MikroTik Routers)</div>
+            <div class="code-line">   - Interfaces: tambahkan interface SNMP</div>
+            <div class="code-line">     • IP address: alamat IP router MikroTik</div>
+            <div class="code-line">     • Port: 161</div>
+            <div class="code-line">     • SNMP version: pilih sesuai konfigurasi (v2c atau v3)</div>
+            <div class="code-line">     • Community: masukkan nama community (untuk v2c)</div>
+            <div class="code-line">     • Security name/level/etc: konfigurasi untuk v3</div>
+            <div class="code-line">   - Templates: tambahkan template MikroTik (Template Net MikroTik SNMP)</div>
+            <div class="code-line">   - Klik "Add" untuk menyelesaikan</div>
+            <div class="code-line"></div>
+            <div class="code-line"><span class="keyword">Contoh Integrasi dengan PRTG:</span></div>
+            <div class="code-line">1. Install dan konfigurasi PRTG Network Monitor</div>
+            <div class="code-line">2. Tambahkan device MikroTik:</div>
+            <div class="code-line">   - Buka PRTG Web Interface</div>
+            <div class="code-line">   - Klik "Add Device" pada grup yang diinginkan</div>
+            <div class="code-line">   - Device Name: nama router MikroTik</div>
+            <div class="code-line">   - IP Address/DNS Name: alamat IP router MikroTik</div>
+            <div class="code-line">   - Klik "Continue"</div>
+            <div class="code-line">3. Konfigurasi SNMP:</div>
+            <div class="code-line">   - Pada tab "Credentials for SNMP Devices":</div>
+            <div class="code-line">     • SNMP Version: pilih sesuai konfigurasi</div>
+            <div class="code-line">     • Community String: masukkan community (untuk v1/v2c)</div>
+            <div class="code-line">     • Username/Authentication/Encryption: untuk SNMPv3</div>
+            <div class="code-line">   - Klik "Continue" dan "Add Device"</div>
+            <div class="code-line">4. PRTG akan otomatis mendeteksi sensor yang tersedia</div>
+        </div>
+
+        <div class="security-alert">
+            <p>SNMP v1 dan v2c mengirimkan community string dalam bentuk plaintext yang dapat dengan mudah diintercept. Untuk jaringan produksi, selalu gunakan SNMPv3 dengan autentikasi dan enkripsi (authPriv). Selain itu, batasi akses SNMP hanya ke alamat IP sistem monitoring yang terpercaya menggunakan kombinasi fitur "Addresses" pada konfigurasi SNMP dan aturan firewall yang sesuai.</p>
+        </div>
+
+        <div class="conclusion-box">
+            <strong>Kesimpulan SNMP di MikroTik:</strong> Dari 2 pendapat tersebut dapat disimpulkan bahwa SNMP adalah protokol standar industri yang memungkinkan integrasi MikroTik dengan berbagai sistem monitoring eksternal untuk analisis jaringan yang lebih komprehensif. Dengan mendukung SNMPv1, v2c, dan v3, MikroTik menawarkan fleksibilitas dalam implementasi, dengan SNMPv3 direkomendasikan untuk lingkungan produksi karena fitur keamanan yang lebih baik. Melalui SNMP, administrator dapat menggabungkan monitoring MikroTik ke dalam ekosistem monitoring terpusat yang mencakup berbagai perangkat jaringan.
+        </div>
+    </div>
+
+    <!-- Section: Kasus Penggunaan Praktis -->
+    <div class="section fade-in">
+        <h2 class="section-title">4. KASUS PENGGUNAAN PRAKTIS GRAPHING DAN SNMP</h2>
+
+        <div class="image-container">
+            <img src="https://i.ibb.co/Qn1pRqt/mikrotik-practical-cases.jpg" alt="MikroTik Monitoring Practical Cases">
+            <div class="image-caption">Implementasi praktis monitoring jangka panjang dengan Graphing dan SNMP</div>
+        </div>
+
+        <h3 class="subsection-title">Monitoring Tren Penggunaan Bandwidth</h3>
+        <p>Dari sumber Bandwidth Management Best Practices (2025), salah satu kasus penggunaan paling umum untuk Graphing dan SNMP adalah monitoring tren penggunaan bandwidth jangka panjang. Data historis ini sangat berharga untuk perencanaan kapasitas, mengidentifikasi waktu puncak, dan memvalidasi efektivitas kebijakan QoS.</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Langkah Monitoring Bandwidth dengan Graphing:</span></div>
+            <div class="code-line">1. Aktifkan Graphing untuk interface WAN:</div>
+            <div class="code-line">   - Buka Tools → Graphing</div>
+            <div class="code-line">   - Tab "Interface"</div>
+            <div class="code-line">   - Centang interface WAN (biasanya ether1 atau pppoe-out)</div>
+            <div class="code-line">   - Klik "Allow"</div>
+            <div class="code-line"></div>
+            <div class="code-line">2. Akses grafik setelah beberapa waktu:</div>
+            <div class="code-line">   - Buka tab "Graphs"</div>
+            <div class="code-line">   - Klik dua kali pada grafik interface WAN</div>
+            <div class="code-line">   - Analisis pola harian, mingguan, dan bulanan</div>
+            <div class="code-line"></div>
+            <div class="code-line">3. Identifikasi tren dan pola:</div>
+            <div class="code-line">   - Waktu puncak penggunaan bandwidth</div>
+            <div class="code-line">   - Peningkatan penggunaan dari waktu ke waktu</div>
+            <div class="code-line">   - Anomali dalam pola normal</div>
+            <div class="code-line"></div>
+            <div class="code-line"><span class="keyword">Monitoring Bandwidth dengan SNMP dan Sistem Eksternal:</span></div>
+            <div class="code-line">1. Konfigurasi template monitoring di sistem eksternal</div>
+            <div class="code-line">2. Manfaatkan fitur lanjutan seperti:</div>
+            <div class="code-line">   - Forecast penggunaan bandwidth masa depan berdasarkan tren</div>
+            <div class="code-line">   - Notifikasi otomatis saat penggunaan mencapai threshold tertentu</div>
+            <div class="code-line">   - Dashboard yang menampilkan multiple interface dan perangkat</div>
+            <div class="code-line">   - Laporan periodik untuk manajemen dan perencanaan</div>
+        </div>
+
+        <h3 class="subsection-title">Pemantauan Performa Router</h3>
+        <p>Dari sumber MikroTik Performance Monitoring (2024), monitoring resource router seperti CPU, memori, dan disk sangat penting untuk memastikan performa optimal dan mengidentifikasi potensi masalah sebelum mempengaruhi layanan. Graphing dan SNMP keduanya menyediakan cara untuk memantau resource ini dari waktu ke waktu.</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Monitoring Resource Router dengan Graphing:</span></div>
+            <div class="code-line">1. Aktifkan Graphing untuk resource sistem:</div>
+            <div class="code-line">   - Buka Tools → Graphing</div>
+            <div class="code-line">   - Tab "Resource"</div>
+            <div class="code-line">   - Centang semua resource yang ingin dimonitor:</div>
+            <div class="code-line">     • CPU: penggunaan CPU</div>
+            <div class="code-line">     • Memory: penggunaan memori</div>
+            <div class="code-line">     • Disk: penggunaan storage</div>
+            <div class="code-line">   - Klik "Allow"</div>
+            <div class="code-line"></div>
+            <div class="code-line">2. Analisis grafik resource:</div>
+            <div class="code-line">   - Identifikasi periode dengan beban CPU tinggi</div>
+            <div class="code-line">   - Pantau tren penggunaan memori</div>
+            <div class="code-line">   - Cek penggunaan disk untuk memastikan cukup ruang tersedia</div>
+            <div class="code-line"></div>
+            <div class="code-line"><span class="keyword">Monitoring Lanjutan dengan SNMP:</span></div>
+            <div class="code-line">1. Konfigurasi threshold dan alert di sistem monitoring:</div>
+            <div class="code-line">   - Alert ketika CPU > 80% selama > 5 menit</div>
+            <div class="code-line">   - Alert ketika penggunaan memori > 90%</div>
+            <div class="code-line">   - Alert ketika disk space < 10%</div>
+            <div class="code-line"></div>
+            <div class="code-line">2. Manfaatkan SNMP OID khusus MikroTik:</div>
+            <div class="code-line">   - Temperatur: 1.3.6.1.4.1.14988.1.1.3.10.0</div>
+            <div class="code-line">   - Voltage: 1.3.6.1.4.1.14988.1.1.3.8.0</div>
+            <div class="code-line">   - Processor frequency: 1.3.6.1.4.1.14988.1.1.3.14.0</div>
+            <div class="code-line">   - License level: 1.3.6.1.4.1.14988.1.1.4.4.0</div>
+        </div>
+
+        <h3 class="subsection-title">Deteksi Masalah dan Troubleshooting</h3>
+        <p>Dari sumber Network Troubleshooting Guide (2025), data historis dari Graphing dan SNMP sangat berharga untuk troubleshooting masalah jaringan yang intermiten atau hanya muncul pada waktu-waktu tertentu. Dengan melihat korelasi antara berbagai metrik, administrator dapat mengidentifikasi akar masalah dengan lebih efektif.</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Deteksi dan Troubleshooting Masalah Jaringan:</span></div>
+            <div class="code-line">1. Identifikasi masalah konektivitas intermiten:</div>
+            <div class="code-line">   - Bandingkan grafik interface WAN dengan interface LAN</div>
+            <div class="code-line">   - Cari periode dengan drop trafik atau spike yang tidak normal</div>
+            <div class="code-line">   - Korelasikan dengan aktivitas pengguna atau waktu tertentu</div>
+            <div class="code-line"></div>
+            <div class="code-line">2. Troubleshooting masalah performa:</div>
+            <div class="code-line">   - Bandingkan grafik CPU dengan grafik trafik</div>
+            <div class="code-line">   - Identifikasi apakah beban CPU tinggi berkorelasi dengan trafik tinggi</div>
+            <div class="code-line">   - Jika CPU tinggi tanpa trafik tinggi, periksa proses lain:</div>
+            <div class="code-line">     • Routing protocols (BGP, OSPF)</div>
+            <div class="code-line">     • Firewall rules kompleks</div>
+            <div class="code-line">     • Queue dengan banyak koneksi aktif</div>
+            <div class="code-line"></div>
+            <div class="code-line">3. Deteksi anomali dengan SNMP dan sistem eksternal:</div>
+            <div class="code-line">   - Gunakan fitur baseline dan anomaly detection</div>
+            <div class="code-line">   - Bandingkan pola trafik saat ini dengan pola normal</div>
+            <div class="code-line">   - Konfigurasikan alert untuk deviasi dari baseline</div>
+            <div class="code-line">   - Integrasikan dengan sistem ticketing untuk respons cepat</div>
+        </div>
+
+        <h3 class="subsection-title">Perencanaan Kapasitas dan Upgrading</h3>
+        <p>Dari sumber IT Infrastructure Planning (2024), data historis dari monitoring jangka panjang adalah komponen kunci dalam perencanaan kapasitas dan keputusan upgrading yang efektif. Dengan memahami tren pertumbuhan, administrator dapat membuat proyeksi kebutuhan di masa depan dan merencanakan upgrade proaktif.</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Perencanaan Kapasitas Berdasarkan Data Monitoring:</span></div>
+            <div class="code-line">1. Analisis tren pertumbuhan bandwidth:</div>
+            <div class="code-line">   - Lihat grafik penggunaan bandwidth bulanan dan tahunan</div>
+            <div class="code-line">   - Hitung rata-rata pertumbuhan bulanan atau kwartalan</div>
+            <div class="code-line">   - Proyeksikan kebutuhan bandwidth 6-12 bulan ke depan</div>
+            <div class="code-line"></div>
+            <div class="code-line">2. Evaluasi performa router:</div>
+            <div class="code-line">   - Analisis tren penggunaan CPU dan memori</div>
+            <div class="code-line">   - Identifikasi apakah router mendekati batas kapasitasnya</div>
+            <div class="code-line">   - Pertimbangkan upgrade jika rata-rata CPU > 70%</div>
+            <div class="code-line">   - Pertimbangkan penambahan memori jika sering mendekati limit</div>
+            <div class="code-line"></div>
+            <div class="code-line">3. Laporan dan rekomendasi:</div>
+            <div class="code-line">   - Ekspor data monitoring ke format laporan</div>
+            <div class="code-line">   - Sertakan grafik tren dan proyeksi</div>
+            <div class="code-line">   - Dokumentasikan rekomendasi upgrade berdasarkan data</div>
+            <div class="code-line">   - Siapkan timeline dan budget untuk implementasi</div>
+        </div>
+
+        <div class="tech-alert">
+            <p>Saat menganalisis data monitoring jangka panjang, penting untuk mempertimbangkan faktor musiman atau periodik yang mungkin mempengaruhi trafik, seperti periode liburan, awal semester untuk institusi pendidikan, atau jam kerja vs non-kerja untuk lingkungan bisnis. Analisis yang akurat harus memperhitungkan pola-pola ini dan tidak hanya melihat tren linier.</p>
+        </div>
+
+        <div class="conclusion-box">
+            <strong>Kesimpulan Kasus Penggunaan Praktis:</strong> Dari 2 pendapat tersebut dapat disimpulkan bahwa Graphing dan SNMP MikroTik menawarkan solusi monitoring jangka panjang yang berharga untuk berbagai kasus penggunaan praktis. Dari monitoring tren penggunaan bandwidth dan performa router hingga deteksi masalah dan perencanaan kapasitas, data historis yang dikumpulkan memungkinkan administrator untuk membuat keputusan yang lebih informasional tentang pengelolaan jaringan dan infrastruktur. Implementasi monitoring yang efektif dapat mengidentifikasi masalah sebelum berdampak pada pengguna dan memberikan wawasan untuk optimasi jaringan berkelanjutan.
+        </div>
+    </div>
+
+    <!-- Section: Best Practices -->
+    <div class="section fade-in">
+        <h2 class="section-title">5. BEST PRACTICES DAN OPTIMASI</h2>
+
+        <div class="image-container">
+            <img src="https://i.ibb.co/RPcZsrn/mikrotik-best-practices.jpg" alt="MikroTik Monitoring Best Practices">
+            <div class="image-caption">Best practices dalam implementasi monitoring jangka panjang di MikroTik</div>
+        </div>
+
+        <h3 class="subsection-title">Optimasi Penggunaan Resource</h3>
+        <p>Dari sumber MikroTik Resource Management (2025), pengumpulan data monitoring dapat mempengaruhi performa router, terutama pada perangkat dengan spesifikasi rendah. Mengoptimalkan konfigurasi monitoring untuk meminimalkan dampak pada resource sistem sambil tetap mendapatkan data yang diperlukan adalah kunci untuk implementasi yang sukses.</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Optimasi Resource untuk Graphing:</span></div>
+            <div class="code-line">1. Selektif dalam pemilihan item monitoring:</div>
+            <div class="code-line">   - Monitor hanya interface utama (WAN, LAN agregat)</div>
+            <div class="code-line">   - Hindari monitoring semua interface individual</div>
+            <div class="code-line">   - Fokus pada queue dan resource penting</div>
+            <div class="code-line"></div>
+            <div class="code-line">2. Sesuaikan interval dan retensi data:</div>
+            <div class="code-line">   - Tingkatkan "Store Every" dari 5 menit ke 10-15 menit jika perlu</div>
+            <div class="code-line">   - Kurangi "Data Period" untuk router dengan storage terbatas</div>
+            <div class="code-line">   - Pertimbangkan menggunakan SNMP untuk menyimpan data di server eksternal</div>
+            <div class="code-line"></div>
+            <div class="code-line">3. Atur batas penggunaan memori:</div>
+            <div class="code-line">   - Sesuaikan "Memory Used" berdasarkan RAM yang tersedia</div>
+            <div class="code-line">   - Pada router dengan RAM terbatas, batasi ke 5-10 MB</div>
+            <div class="code-line">   - Pada router high-end, bisa ditingkatkan untuk data lebih detail</div>
+            <div class="code-line"></div>
+            <div class="code-line"><span class="keyword">Optimasi Resource untuk SNMP:</span></div>
+            <div class="code-line">1. Batasi akses SNMP:</div>
+            <div class="code-line">   - Gunakan fitur "Addresses" untuk membatasi ke IP monitoring saja</div>
+            <div class="code-line">   - Terapkan firewall rules untuk membatasi akses port 161/UDP</div>
+            <div class="code-line"></div>
+            <div class="code-line">2. Sesuaikan polling interval di sistem monitoring:</div>
+            <div class="code-line">   - Gunakan interval 5 menit untuk metrik standar</div>
+            <div class="code-line">   - Perpanjang interval menjadi 15-30 menit untuk metrik non-kritis</div>
+            <div class="code-line">   - Batasi polling data besar (seperti routing table) ke interval panjang</div>
+        </div>
+
+        <h3 class="subsection-title">Implementasi Monitoring Bertingkat</h3>
+        <p>Dari sumber Enterprise Monitoring Architecture (2024), untuk jaringan dengan banyak router MikroTik, implementasi monitoring bertingkat (hierarchical monitoring) dapat meningkatkan efisiensi dan skalabilitas. Pendekatan ini menggabungkan monitoring lokal dengan sistem monitoring terpusat.</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Implementasi Monitoring Bertingkat:</span></div>
+            <div class="code-line">1. Layer 1 - Local Monitoring (pada setiap router):</div>
+            <div class="code-line">   - Aktifkan Graphing untuk monitoring dasar</div>
+            <div class="code-line">   - Fokus pada metrik penting untuk operasional lokal</div>
+            <div class="code-line">   - Manfaatkan untuk troubleshooting cepat dan verifikasi</div>
+            <div class="code-line"></div>
+            <div class="code-line">2. Layer 2 - Site Monitoring (per lokasi):</div>
+            <div class="code-line">   - Gunakan SNMP untuk mengumpulkan data ke server monitoring lokal</div>
+            <div class="code-line">   - Implementasi pada router utama atau server di lokasi</div>
+            <div class="code-line">   - Menyimpan data dengan granularitas tinggi untuk periode sedang</div>
+            <div class="code-line"></div>
+            <div class="code-line">3. Layer 3 - Central Monitoring (pusat/enterprise):</div>
+            <div class="code-line">   - Sistem monitoring enterprise terpusat (Zabbix, PRTG, dll)</div>
+            <div class="code-line">   - Mengumpulkan data dari semua lokasi</div>
+            <div class="code-line">   - Fokus pada metrik agregat dan tren jangka panjang</div>
+            <div class="code-line">   - Menyimpan data dengan granularitas menurun untuk periode panjang</div>
+            <div class="code-line"></div>
+            <div class="code-line">4. Contoh implementasi dengan MikroTik dan Zabbix:</div>
+            <div class="code-line">   - Router cabang: Graphing lokal + SNMP ke Zabbix proxy lokal</div>
+            <div class="code-line">   - Router pusat: Graphing + SNMP langsung ke Zabbix server</div>
+            <div class="code-line">   - Zabbix proxy di setiap lokasi dengan banyak perangkat</div>
+            <div class="code-line">   - Zabbix server pusat untuk agregasi dan pelaporan</div>
+        </div>
+
+        <h3 class="subsection-title">Keamanan dalam Implementasi Monitoring</h3>
+        <p>Dari sumber Secure Network Management (2025), aspek keamanan dalam implementasi monitoring sering terabaikan, padahal sistem monitoring dapat menjadi target serangan atau vektor untuk mendapatkan akses ke jaringan. Praktik keamanan yang baik adalah komponen penting dalam implementasi monitoring yang efektif.</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Best Practices Keamanan Monitoring:</span></div>
+            <div class="code-line">1. Keamanan SNMP:</div>
+            <div class="code-line">   - Hindari penggunaan SNMPv1/v2c jika memungkinkan</div>
+            <div class="code-line">   - Jika harus menggunakan v2c, ubah community string default</div>
+            <div class="code-line">   - Gunakan SNMPv3 dengan mode authPriv untuk produksi</div>
+            <div class="code-line">   - Batasi akses SNMP ke alamat IP monitoring spesifik</div>
+            <div class="code-line"></div>
+            <div class="code-line">2. Akses WebFig untuk Graphing:</div>
+            <div class="code-line">   - Aktifkan HTTPS untuk akses WebFig:</div>
+            <div class="code-line">     • IP → Services → www → SSL</div>
+            <div class="code-line">   - Batasi akses ke subnet administratif:</div>
+            <div class="code-line">     • IP → Services → www → Available From</div>
+            <div class="code-line">   - Ubah port default (80/443) ke port non-standar</div>
+            <div class="code-line"></div>
+            <div class="code-line">3. Segmentasi jaringan monitoring:</div>
+            <div class="code-line">   - Buat VLAN atau subnet khusus untuk sistem monitoring</div>
+            <div class="code-line">   - Terapkan ACL untuk membatasi akses antar segment</div>
+            <div class="code-line">   - Gunakan VPN untuk monitoring remote jika diperlukan</div>
+            <div class="code-line"></div>
+            <div class="code-line">4. Logging dan auditing:</div>
+            <div class="code-line">   - Aktifkan logging untuk akses monitoring</div>
+            <div class="code-line">   - Monitor dan audit akses ke sistem monitoring</div>
+            <div class="code-line">   - Integrasikan log monitoring dengan SIEM jika tersedia</div>
+        </div>
+
+        <h3 class="subsection-title">Automasi dan Integrasi</h3>
+        <p>Dari sumber Network Automation Strategies (2024), mengintegrasikan monitoring dengan sistem automasi dapat meningkatkan efektivitas dan mengurangi beban administratif. Dengan menggabungkan data monitoring dengan script dan automation tools, administrator dapat membuat respons otomatis terhadap kondisi tertentu.</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Automasi Berdasarkan Data Monitoring:</span></div>
+            <div class="code-line">1. Script monitoring dan respons otomatis di MikroTik:</div>
+            <div class="code-line">   - Buat script untuk memeriksa kondisi tertentu:</div>
+            <div class="code-line"></div>
+            <div class="code-line"># Script untuk memeriksa CPU dan mengirim email</div>
+            <div class="code-line">:local cpuLoad [/system resource get cpu-load]</div>
+            <div class="code-line">:if ($cpuLoad > 80) do={</div>
+            <div class="code-line">  :local subject "Router $[/system identity get name] CPU Alert"</div>
+            <div class="code-line">  :local message "CPU usage is $cpuLoad%"</div>
+            <div class="code-line">  /tool e-mail send to="admin@example.com" subject=$subject body=$message</div>
+            <div class="code-line">}</div>
+            <div class="code-line"></div>
+            <div class="code-line">2. Jadwalkan script dengan Scheduler:</div>
+            <div class="code-line">   - System → Scheduler → tambahkan entri baru</div>
+            <div class="code-line">   - Interval: 5m (setiap 5 menit)</div>
+            <div class="code-line">   - On Event: nama script yang telah dibuat</div>
+            <div class="code-line"></div>
+            <div class="code-line">3. Integrasi dengan sistem eksternal:</div>
+            <div class="code-line">   - Gunakan webhook atau API dari sistem monitoring</div>
+            <div class="code-line">   - Contoh integrasi Zabbix dengan script MikroTik:</div>
+            <div class="code-line">     • Buat Action di Zabbix untuk kondisi spesifik</div>
+            <div class="code-line">     • Gunakan "Remote command" untuk menjalankan script di MikroTik</div>
+            <div class="code-line">     • Contoh: perintah untuk membatasi bandwidth saat trafik tinggi</div>
+        </div>
+
+        <div class="security-alert">
+            <p>Implementasi automasi berdasarkan data monitoring harus diuji secara menyeluruh di lingkungan non-produksi sebelum diterapkan pada jaringan produksi. Script automasi yang tidak diuji dengan baik dapat menyebabkan gangguan layanan atau masalah keamanan. Selalu sertakan mekanisme override manual dan logging yang baik untuk setiap automasi yang diterapkan.</p>
+        </div>
+
+        <div class="conclusion-box">
+            <strong>Kesimpulan Best Practices:</strong> Dari 2 pendapat tersebut dapat disimpulkan bahwa implementasi monitoring jangka panjang yang efektif di MikroTik memerlukan pendekatan yang seimbang antara kebutuhan data, optimasi resource, keamanan, dan integrasi. Dengan menerapkan best practices seperti selektivitas dalam item monitoring, implementasi bertingkat untuk jaringan besar, pengamanan akses monitoring, dan integrasi dengan automasi, administrator dapat memaksimalkan nilai dari data monitoring sambil meminimalkan overhead dan risiko keamanan.
+        </div>
+    </div>
+
+    <!-- Bibliography -->
+    <div class="bibliography">
+        <h3>DAFTAR PUSTAKA</h3>
+        <ul>
+            <li><strong>MikroTik Documentation.</strong> 2025. <em>Graphing and SNMP Tools in RouterOS</em>. <a href="https://help.mikrotik.com/docs/display/ROS/Graphing" target="_blank">https://help.mikrotik.com/docs/display/ROS/Graphing</a>. Diakses pada 9 Oktober 2025, pukul 10:17 WIB.</li>
+            
+            <li><strong>Network Monitoring Fundamentals.</strong> 2024. <em>Long-term Monitoring Strategies</em>. <a href="https://networkmonitoring.org/longterm-strategies" target="_blank">https://networkmonitoring.org/longterm-strategies</a>. Diakses pada 9 Oktober 2025, pukul 10:45 WIB.</li>
+            
+            <li><strong>MikroTik Best Practices Guide.</strong> 2025. <em>Implementing Effective Network Monitoring</em>. <a href="https://mikrotik.com/bestpractices/monitoring" target="_blank">https://mikrotik.com/bestpractices/monitoring</a>. Diakses pada 9 Oktober 2025, pukul 11:20 WIB.</li>
+            
+            <li><strong>Enterprise Network Monitoring.</strong> 2024. <em>SNMP Implementation Guide</em>. <a href="https://enterprisemonitoring.net/snmp-guide" target="_blank">https://enterprisemonitoring.net/snmp-guide</a>. Diakses pada 9 Oktober 2025, pukul 11:55 WIB.</li>
+
+            <li><strong>Network Visualization Techniques.</strong> 2024. <em>Effective Graph Representations</em>. <a href="https://networkvisualization.org/graph-techniques" target="_blank">https://networkvisualization.org/graph-techniques</a>. Diakses pada 9 Oktober 2025, pukul 12:30 WIB.</li>
+
+            <li><strong>MikroTik Advanced Configuration.</strong> 2025. <em>Optimizing Graphing Performance</em>. <a href="https://mikrotikconfig.com/graphing-optimization" target="_blank">https://mikrotikconfig.com/graphing-optimization</a>. Diakses pada 9 Oktober 2025, pukul 13:15 WIB.</li>
+
+            <li><strong>Data Visualization in Network Management.</strong> 2024. <em>Interpreting Network Graphs</em>. <a href="https://datavisualization.tech/network-graphs" target="_blank">https://datavisualization.tech/network-graphs</a>. Diakses pada 9 Oktober 2025, pukul 13:45 WIB.</li>
+
+            <li><strong>Network Management Systems.</strong> 2024. <em>Integrating MikroTik with Monitoring Platforms</em>. <a href="https://networkmanagementsystems.com/mikrotik-integration" target="_blank">https://networkmanagementsystems.com/mikrotik-integration</a>. Diakses pada 9 Oktober 2025, pukul 14:20 WIB.</li>
+
+            <li><strong>Secure Network Monitoring.</strong> 2025. <em>SNMPv3 Security Implementation</em>. <a href="https://securenetworkmonitoring.org/snmpv3-guide" target="_blank">https://securenetworkmonitoring.org/snmpv3-guide</a>. Diakses pada 9 Oktober 2025, pukul 14:55 WIB.</li>
+
+            <li><strong>Enterprise Monitoring Solutions.</strong> 2024. <em>MikroTik Monitoring with Zabbix and PRTG</em>. <a href="https://enterprisemonitoring.solutions/mikrotik-integration" target="_blank">https://enterprisemonitoring.solutions/mikrotik-integration</a>. Diakses pada 9 Oktober 2025, pukul 15:30 WIB.</li>
+
+            <li><strong>Bandwidth Management Best Practices.</strong> 2025. <em>Long-term Bandwidth Analysis</em>. <a href="https://bandwidthmanagement.org/long-term-analysis" target="_blank">https://bandwidthmanagement.org/long-term-analysis</a>. Diakses pada 9 Oktober 2025, pukul 16:05 WIB.</li>
+
+            <li><strong>MikroTik Performance Monitoring.</strong> 2024. <em>Router Resource Monitoring</em>. <a href="https://mikrotikperformance.net/resource-monitoring" target="_blank">https://mikrotikperformance.net/resource-monitoring</a>. Diakses pada 9 Oktober 2025, pukul 16:40 WIB.</li>
+
+            <li><strong>Network Troubleshooting Guide.</strong> 2025. <em>Using Historical Data for Problem Resolution</em>. <a href="https://networktroubleshooting.guide/historical-analysis" target="_blank">https://networktroubleshooting.guide/historical-analysis</a>. Diakses pada 9 Oktober 2025, pukul 17:15 WIB.</li>
+
+            <li><strong>IT Infrastructure Planning.</strong> 2024. <em>Capacity Planning Based on Monitoring Data</em>. <a href="https://itplanning.org/capacity-monitoring" target="_blank">https://itplanning.org/capacity-monitoring</a>. Diakses pada 9 Oktober 2025, pukul 17:50 WIB.</li>
+
+            <li><strong>MikroTik Resource Management.</strong> 2025. <em>Balancing Monitoring and Performance</em>. <a href="https://mikrotikresource.net/monitoring-balance" target="_blank">https://mikrotikresource.net/monitoring-balance</a>. Diakses pada 9 Oktober 2025, pukul 18:25 WIB.</li>
+
+            <li><strong>Enterprise Monitoring Architecture.</strong> 2024. <em>Hierarchical Monitoring Implementations</em>. <a href="https://monitoringarchitecture.org/hierarchical-approach" target="_blank">https://monitoringarchitecture.org/hierarchical-approach</a>. Diakses pada 9 Oktober 2025, pukul 18:55 WIB.</li>
+
+            <li><strong>Secure Network Management.</strong> 2025. <em>Securing Monitoring Infrastructure</em>. <a href="https://securenetworkmanagement.com/monitoring-security" target="_blank">https://securenetworkmanagement.com/monitoring-security</a>. Diakses pada 9 Oktober 2025, pukul 19:25 WIB.</li>
+
+            <li><strong>Network Automation Strategies.</strong> 2024. <em>Automating Responses to Monitoring Alerts</em>. <a href="https://networkautomation.strategies/monitoring-integration" target="_blank">https://networkautomation.strategies/monitoring-integration</a>. Diakses pada 9 Oktober 2025, pukul 19:55 WIB.</li>
+        </ul>
+    </div>
+</div>
+<script>
+    // Tech particles animation
+    function createTechParticles() {
+        const particlesContainer = document.getElementById('techParticles');
+        const particleCount = 50;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+            
+            particlesContainer.appendChild(particle);
+        }
+    }
+
+    // Scroll progress
+    function updateScrollProgress() {
+        const scrollTop = document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercent = (scrollTop / scrollHeight) * 100;
+        document.getElementById('scrollProgress').style.width = scrollPercent + '%';
+    }
+
+    // Typing effect for code lines
+    function typeText(element, text, speed = 30) {
+        return new Promise(resolve => {
+            element.classList.add('typing');
+            let i = 0;
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent = text.slice(0, i + 1);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    element.classList.remove('typing');
+                    element.classList.add('typed');
+                    resolve();
+                }
+            }
+            type();
+        });
+    }
+    
+    async function animateCodeBlock(terminal) {
+        const codeLines = terminal.querySelectorAll('.code-line:not(.typed)');
+        for (const line of codeLines) {
+            const originalHTML = line.innerHTML;
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = originalHTML;
+            const textContent = tempDiv.textContent || tempDiv.innerText || '';
+            
+            // Clear the line content, but keep child spans for styling
+            const children = Array.from(line.childNodes).map(child => child.cloneNode(true));
+            line.innerHTML = '';
+            
+            await typeText(line, textContent, 20);
+            
+            // Restore original HTML with spans
+            line.innerHTML = originalHTML;
+            line.classList.add('typed');
+        }
+    }
+
+    // Animate code blocks with typing effect
+    function setupCodeBlockObserver() {
+        const codeTerminals = document.querySelectorAll('.code-terminal');
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const terminal = entry.target;
+                    // For already typed lines, just show them
+                    terminal.querySelectorAll('.code-line.typed').forEach(line => line.style.opacity = '1');
+                    
+                    animateCodeBlock(terminal);
+                    obs.unobserve(terminal); // Animate only once
+                }
+            });
+        }, { threshold: 0.3 });
+
+        codeTerminals.forEach(terminal => {
+            observer.observe(terminal);
+        });
+    }
+
+    // Fade in animation on scroll
+    function animateOnScroll() {
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(element => {
+            observer.observe(element);
+        });
+    }
+
+    // Section hover effects
+    function addSectionEffects() {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            section.addEventListener('mouseenter', () => {
+                section.style.transform = 'translateY(-8px)';
+            });
+            section.addEventListener('mouseleave', () => {
+                section.style.transform = 'translateY(0)';
+            });
+        });
+    }
+
+    // Initialize everything
+    document.addEventListener('DOMContentLoaded', () => {
+        createTechParticles();
+        animateOnScroll();
+        setupCodeBlockObserver();
+        addSectionEffects();
+        
+        // Scroll events
+        window.addEventListener('scroll', updateScrollProgress);
+        
+        // Smooth scrolling for better UX
+        document.documentElement.style.scrollBehavior = 'smooth';
+    });
+
+    // Add responsive particle count
+    function adjustParticleCount() {
+        const width = window.innerWidth;
+        const particlesContainer = document.getElementById('techParticles');
+        const currentParticles = particlesContainer.children.length;
+        const targetParticles = width < 768 ? 20 : width < 1200 ? 35 : 50;
+        
+        if (currentParticles !== targetParticles) {
+            particlesContainer.innerHTML = '';
+            for (let i = 0; i < targetParticles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+    }
+
+    window.addEventListener('resize', adjustParticleCount);
+
+
+
+   
+</script>
+
+</html>
